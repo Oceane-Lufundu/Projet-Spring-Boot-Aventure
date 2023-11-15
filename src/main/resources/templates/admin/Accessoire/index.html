@@ -8,36 +8,36 @@
 <div class="vh-100">
     <nav th:replace="mesFragments :: fragNav"></nav>
     <main class="container">
-        <h1>Gestion des Qualites</h1>
+        <h1>Gestion des Accessoires</h1>
         <div >
-            <a th:href="@{'/admin/qualite/create'}" class="btn btn-success">
-                Ajouter une qualite
+            <a th:href="@{'/admin/Accessoire/create'}" class="btn btn-success">
+                Ajouter un accessoire
             </a>
         </div>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>Nom</th>
-                <th>Bonus</th>
-                <th>Couleur</th>
+                <th>Impact</th>
+                <th>Type</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="uneQualite : ${qualites}">
-                <td th:text="${uneQualite.nom}"></td>
-                <td th:text="${uneQualite.bonusQualite}"></td>
-                <td th:text="${uneQualite.couleur}"></td>
+            <tr th:each="unAccessoire : ${Accessoires}">
+                <td th:text="${unAccessoire.nom}"></td>
+                <td th:text="${unAccessoire.impactAccessoire}"></td>
+                <td th:text="${unAccessoire.type}"></td>
                 <td class="d-flex">
-                    <a th:href="@{'/admin/qualite/'+${uneQualite.id}+'/edit'}" class="btn btn-warning">
+                    <a th:href="@{'/admin/Accessoire/'+${unAccessoire.id}+'/edit'}" class="btn btn-warning">
                         Modifier
                     </a>
-                    <a th:href="@{'/admin/qualite/'+${uneQualite.id}}" class="btn btn-primary">
+                    <a th:href="@{'/admin/Accessoire/'+${unAccessoire.id}}" class="btn btn-primary">
                         Consulter
                     </a>
                     <div>
-                        <form th:action="@{'/admin/qualite/delete'}" method="post">
-                            <input type="hidden" name="id" th:value="${uneQualite.id}">
+                        <form th:action="@{'/admin/Accessoire/delete'}" method="post">
+                            <input type="hidden" name="id" th:value="${unAccessoire.id}">
                             <button class="btn btn-danger">Supprimer</button>
                         </form>
                     </div>

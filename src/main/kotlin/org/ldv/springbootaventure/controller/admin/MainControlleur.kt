@@ -10,8 +10,12 @@ class MainControlleur {
         return "visiteur/accueil"
     }
 
-    @GetMapping("/inscription.com")
+    @GetMapping("/inscription")
     fun inscription():String{
         return "visiteur/inscription"
+    }
+    @GetMapping("/login")
+    fun login():String {
+        return "visiteur/login"
     }
 }

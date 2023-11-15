@@ -8,11 +8,11 @@
 <div class="vh-100">
     <nav th:replace="mesFragments :: fragNav"></nav>
     <main class="container">
-        <h1 th:style="${'color:'+qualite.couleur}" th:text="'Qualite '+${qualite.nom}"></h1>
+        <h1 th:style="${'type:'+Accessoire.type}" th:text="'Qualite '+${Accessoire.nom}"></h1>
         <ul>
-            <li th:text="'Nom : '+ ${qualite.nom}"></li>
-            <li th:text="'Bonus : '+${qualite.bonusQualite}"></li>
-            <li th:text="'Couleur : '+${qualite.couleur}"></li>
+            <li th:text="'Nom : '+ ${Accessoire.nom}"></li>
+            <li th:text="'Impact : '+${Accessoire.impactAccessoire}"></li>
+            <li th:text="'Type : '+${Accessoire.type}"></li>
         </ul>
     </main>
 </div>

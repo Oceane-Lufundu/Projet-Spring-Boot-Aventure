@@ -31,7 +31,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="visiteur/login.html">Login</a>
                 </li>
-        </div>
+         </div>
     </div>
 </nav>
 
@@ -78,6 +78,19 @@
                     <li class="nav-item mb-2"><a href="visiteur/inscription.html" class="nav-link p-0 text-body-secondary">Inscription</a></li>
                     <li class="nav-item mb-2"><a href="visiteur/login.html" class="nav-link p-0 text-body-secondary">Login</a></li>
                 </ul>
+            </div>
+            <div th:fragment="fragFlashSuccess">
+                <div  class="toast-container position-fixed tom-0 end-0 p-3" >
+                    <!-- Toast de Bootstrap -->
+                    <div th:if="${msgSuccess != null}" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header bg-success">
+                            <strong class="me-auto">Opération réussie</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body" th:text="${msgSuccess}">
+                        </div>
+                    </div>
+                </div>
             </div>
         </footer>
     </div>

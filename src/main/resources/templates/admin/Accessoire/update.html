@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main class="container">
+    <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
+
+        <form novalidate class="validation"  th:action="@{/admin/Accessoire/update}" th:object="${nouvelleAccessoire}" method="post">
+            <h2 class="mb-4">Ajouter une Accessoire</h2>
+            <!-- Input pour le nom de l'accessoire -->
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom de l'Accessoire'</label>
+                <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${nouvelleAccessoire.nom}">
+            </div>
+
+            <!-- Select pour le type de l'accessoire -->
+            <div class="mb-3">
+                <label for="type" class="form-label">Type de l'Accessoire</label>
+                <select id="type" name="type" th:field="${nouvelleAccessoire.type}">
+                    <option value="bombe">Bombe</option>
+                    <option value="potion">Potion</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+
+            <!-- Input pour l'impact de l'accessoire -->
+            <div class="mb-3">
+                <label for="impactAccessoire" class="form-label">Impact de l'Accessoire</label>
+                <input required min="10" max="40" type="number" class="form-control" id="impactAccessoire" name="bonusQualite" th:field="${nouvelleAccessoire.impactAccessoire}">
+            </div>
+
+            <!-- Bouton de soumission -->
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>
