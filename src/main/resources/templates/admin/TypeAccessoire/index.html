@@ -8,36 +8,34 @@
 <div class="vh-100">
     <nav th:replace="mesFragments :: fragNav"></nav>
     <main class="container">
-        <h1>Gestion des Accessoires</h1>
+        <h1>Gestion des Types d'accessoires</h1>
         <div >
             <a th:href="@{'/admin/Accessoire/create'}" class="btn btn-success">
-                Ajouter un accessoire
+                Ajouter un type d'accessoire
             </a>
         </div>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>Nom</th>
-                <th>Impact</th>
                 <th>Type</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="unAccessoire : ${Accessoires}">
-                <td th:text="${unAccessoire.nom}"></td>
-                <td th:text="${unAccessoire.impactAccessoire}"></td>
-                <td th:text="${unAccessoire.type}"></td>
+            <tr th:each="unTypeAccessoire : ${TypeAccessoires}">
+                <td th:text="${unTypeAccessoire.nom}"></td>
+                <td th:text="${unTypeAccessoire.typeBonus}"></td>
                 <td class="d-flex">
-                    <a th:href="@{'/admin/Accessoire/'+${unAccessoire.id}+'/edit'}" class="btn btn-warning">
+                    <a th:href="@{'/admin/TypeAccessoire/'+${unTypeAccessoire.id}+'/edit'}" class="btn btn-warning">
                         Modifier
                     </a>
-                    <a th:href="@{'/admin/Accessoire/'+${unAccessoire.id}}" class="btn btn-primary">
+                    <a th:href="@{'/admin/TypeAccessoire/'+${unTypeAccessoire.id}}" class="btn btn-primary">
                         Consulter
                     </a>
                     <div>
-                        <form th:action="@{'/admin/Accessoire/delete'}" method="post">
-                            <input type="hidden" name="id" th:value="${unAccessoire.id}">
+                        <form th:action="@{'/admin/TypeAccessoire/delete'}" method="post">
+                            <input type="hidden" name="id" th:value="${unTypeAccessoire.id}">
                             <button class="btn btn-danger">Supprimer</button>
                         </form>
                     </div>

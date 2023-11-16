@@ -8,7 +8,7 @@
 <main class="container">
     <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
 
-        <form novalidate class="validation"  th:action="@{/admin/Accessoire/update}" th:object="${nouvelleAccessoire}" method="post">
+        <form novalidate class="validation" th:action="@{/templates/admin/TypeAccessoire/update}" th:object="${nouvelleAccessoire}" method="post">
             <h2 class="mb-4">Ajouter une Accessoire</h2>
             <!-- Input pour le nom de l'accessoire -->
             <div class="mb-3">
@@ -20,16 +20,11 @@
             <div class="mb-3">
                 <label for="type" class="form-label">Type de l'Accessoire</label>
                 <select id="type" name="type" th:field="${nouvelleAccessoire.type}">
-                    <option value="bombe">Bombe</option>
-                    <option value="potion">Potion</option>
-                    <option value="autre">Autre</option>
+                    <option value="attaque">Attaque</option>
+                    <option value="defense">Défense</option>
+                    <option value="endurance">Endurance</option>
+                    <option value="vitesse">Vitesse</option>
                 </select>
-            </div>
-
-            <!-- Input pour l'impact de l'accessoire -->
-            <div class="mb-3">
-                <label for="impactAccessoire" class="form-label">Impact de l'Accessoire</label>
-                <input required min="10" max="40" type="number" class="form-control" id="impactAccessoire" name="bonusQualite" th:field="${nouvelleAccessoire.impactAccessoire}">
             </div>
 
             <!-- Bouton de soumission -->

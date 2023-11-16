@@ -1,81 +1,84 @@
 package org.ldv.springbootaventure.controller.admin
 
-import org.ldv.springbootaventure.model.dao.TypeArmeDAO
-import org.ldv.springbootaventure.model.entity.TypeArme
-import org.springframework.ui.Model
+import org.ldv.springbootaventure.model.dao.QualiteDAO
+import org.ldv.springbootaventure.model.dao.TypeAccessoireDAO
+import org.ldv.springbootaventure.model.entity.Qualite
+import org.ldv.springbootaventure.model.entity.TypeAccessoire
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
 
 @Controller
-class TypeArmeController (val typeArmeDAO: TypeArmeDAO ){
+class TypeAccessoireController (val typeAccessoireDAO : TypeAccessoireDAO){
     /**
-     * Fonction qui affiche la liste de tous les types d'arme.
+     * Affiche la liste de tous les accessoires.
+     *
      * @param model Le modèle utilisé pour transmettre les données à la vue.
      * @return Le nom de la vue à afficher.
      */
-    @GetMapping("/admin/TypeArme")
+    @GetMapping("/admin/TypeAccessoire")
     fun index(model: Model): String {
-        // Récupère tous les types d'arme depuis la base de données
-        val arme = this.typeArmeDAO.findAll()
-        // Ajoute la liste des armes au modèle pour affichage dans la vue
-        model.addAttribute("arme",arme)
+        // Récupère tous les types d'accessoires depuis la base de données
+        val accessoires = this.typeAccessoireDAO.findAll()
+
+        // Ajoute la liste des types d'accessoires au modèle pour affichage dans la vue
+        model.addAttribute("accessoires", accessoires)
+
         // Retourne le nom de la vue à afficher
-        return "admin/TypeArme/index"
+        return "admin/TypeAccessoire/index"
     }
 
     /**
-     * Affiche les détails d'un type d'arme en particulier.
+     * Affiche les détails d'un type d'accessoire en particulier.
      *
-     * @param id L'identifiant unique du type d'arme à afficher.
+     * @param id L'identifiant unique du type d'accessoire à afficher.
      * @param model Le modèle utilisé pour transmettre les données à la vue.
      * @return Le nom de la vue à afficher.
      * @throws NoSuchElementException si la qualité avec l'ID spécifié n'est pas trouvée.
      */
-    @GetMapping("/admin/TypeArme/{id}")
+    @GetMapping("/admin/TypeAccessoire/{id}")
     fun show(@PathVariable id: Long, model: Model): String {
-        // Récupère le type d'arme avec l'ID spécifié depuis la base de données
-        val uneQualite = this.typeArmeDAO.findById(id).orElseThrow()
-        // Ajoute le type d'arme au modèle pour affichage dans la vue
-        model.addAttribute("arme", uneQualite)
+        // Récupère le type d'accessoire avec l'ID spécifié depuis la base de données
+        val uneQualite = this.typeAccessoireDAO.findById(id).orElseThrow()
+
+        // Ajoute le type d'accessoire au modèle pour affichage dans la vue
+        model.addAttribute("accessoire", uneQualite)
+
         // Retourne le nom de la vue à afficher
-        return "admin/TypeArme/show"
+        return "admin/TypeAccessoire/show"
     }
-
-
     /**
-     * Affiche le formulaire de création d'un nouveau type d'arme.
+     * Affiche le formulaire de création d'un nouveau type d'accessoire.
      *
      * @param model Le modèle utilisé pour transmettre les données à la vue.
      * @return Le nom de la vue à afficher (le formulaire de création).
      */
-    @GetMapping("/admin/TypeArme/create")
+    @GetMapping("/admin/TypeAccessoire/create")
     fun create(model: Model): String {
-        // Crée une nouvelle instance de TypeArme avec des valeurs par défaut
-        val nouveauTypeArme = TypeArme(null, "", "","")
-        // Ajoute le nouveau type d'arme au modèle pour affichage dans le formulaire de création
-        model.addAttribute("nouveauTypeArme", nouveauTypeArme)
+        // Crée une nouvelle instance de TypeAccessoire avec des valeurs par défaut
+        val nouveauTypeAccessoire = TypeAccessoire(null, "", "")
+
+        // Ajoute le nouveau type d'accessoire au modèle pour affichage dans le formulaire de création
+        model.addAttribute("nouveauTypeAccessoire", nouveauTypeAccessoire)
+
         // Retourne le nom de la vue à afficher (le formulaire de création)
-        return "admin/TypeArme/create"
+        return "admin/TypeAccessoire/create"
     }
-
-
     /**
-     * Gère la soumission du formulaire d'ajout d'un type d'arme
-     * @param nouveauTypeArme L'objet TypeArme créé à partir des données du formulaire.
+     * Gère la soumission du formulaire d'ajout d'un type d'accessoire.
+     *
+     * @param nouveauTypeAccessoire L'objet TypeAccessoire créé à partir des données du formulaire.
      * @param redirectAttributes Les attributs de redirection pour transmettre des messages à la vue suivante.
      * @return La redirection vers la page d'administration des types d'accessoires après l'ajout réussi.
      */
-    @PostMapping("/admin/TypeArme")
+    @PostMapping("/admin/TypeAccessoire")
     fun store(@ModelAttribute nouveauTypeArme: TypeArme, redirectAttributes: RedirectAttributes): String {
-        // Sauvegarde le nouveau type d'accessoire dans la base de données
-        val savedTypeAccessoire = this.typeArmeDAO.save(nouveauTypeArme)
+        // Sauvegarde le nouveau type d'arme dans la base de données
+        val savedTypeAccessoire = this.typeAccessoireDAO.save(nouveauTypeAccessoire)
         // Ajoute un message de succès pour être affiché à la vue suivante
-        redirectAttributes.addFlashAttribute("msgSuccess", "Enregistrement de ${savedTypeArme.nom} réussi")
-        // Redirige vers la page d'administration des types d'accessoires
+        redirectAttributes.addFlashAttribute("msgSuccess", "Enregistrement de ${savedTypeAccessoire.nom} réussi")
+        // Redirige vers la page d'administration des types d'arme
         return "redirect:/admin/TypeAccessoire"
     }
     @GetMapping("/admin/TypeAccessoire/{id}/edit")
@@ -138,4 +141,4 @@ class TypeArmeController (val typeArmeDAO: TypeArmeDAO ){
         // Redirige vers la page d'administration des types d'accessoire
         return "redirect:/admin/TypeAccessoire"
     }
-
+}
