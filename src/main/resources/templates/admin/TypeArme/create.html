@@ -2,7 +2,7 @@
 <html lang="fr">
 <head th:replace="mesFragments :: fragHead">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>ajout d'un type d'arme</title>
 </head>
 <body>
 <div class="vh-100">
@@ -10,25 +10,38 @@
     <main class="container">
         <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
 
-            <form novalidate class="validation"  th:action="@{/admin/qualite}" th:object="${nouvelleQualite}" method="post">
-                <h2 class="mb-4">Ajouter une Qualité</h2>
-                <!-- Input pour le nom de la qualité -->
+            <form novalidate class="validation"  th:action="@{/admin/TypeArme}" th:object="${nouvelleTypeArme}" method="post">
+                <h2 class="mb-4">Ajouter un type d'arme</h2>
+                <!-- Input pour le nom du type d'arme -->
                 <div class="mb-3">
-                    <label for="nom" class="form-label">Nom de la Qualité</label>
-                    <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${nouvelleQualite.nom}">
+                    <label for="nom" class="form-label">Nom du type d'arme </label>
+                    <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${nouvelleTypeArme.nom}">
                 </div>
 
-                <!-- Input pour la couleur de la qualité -->
+                <!-- Input pour le Nombre de dés du type d'arme-->
                 <div class="mb-3">
-                    <label for="couleur" class="form-label">Couleur de la Qualité</label>
-                    <input required type="color" class="form-control" id="couleur" name="couleur"  th:field="${nouvelleQualite.couleur}">
+                    <label for="NombreDes" class="form-label">Nombre de dé </label>
+                    <input required min="1" max="2" type="number" class="form-control" id="NombreDes" name="NombreDes" th:field="${nouvelleTypeArme.nombreDes}">
                 </div>
 
-                <!-- Input pour le bonus de la qualité -->
+                <!-- Input pour la valeur max du dé  -->
                 <div class="mb-3">
-                    <label for="bonusQualite" class="form-label">Bonus de la Qualité</label>
-                    <input required min="0" max="99" type="number" class="form-control" id="bonusQualite" name="bonusQualite" th:field="${nouvelleQualite.bonusQualite}">
+                    <label for="valeurDeMax" class="form-label">Valeur maximale des dés</label>
+                    <input required min="6" max="20" type="number" class="form-control" id="valeurDeMax" name="valeurDeMax" th:field="${nouvelleTypeArme.valeurDeMax}">
                 </div>
+
+                <!-- Input pour la valeur du multiplicateur Critique -->
+                <div class="mb-3">
+                    <label for="multiplicateurCritique" class="form-label">Valeur du multiplicateur critique</label>
+                    <input required min="1" max="10" type="number" class="form-control" id="multiplicateurCritique" name="multiplicateurCritique" th:field="${nouvelleTypeArme.multiplicateurCritique}">
+                </div>
+
+                <!-- Input pour la valeur de l'activation Critique-->
+                <div class="mb-3">
+                    <label for="activationCritique" class="form-label">Valeur de l'activation Critique</label>
+                    <input required min="1" max="20" type="number" class="form-control" id="activationCritique" name="activationCritique" th:field="${nouvelleTypeArme.activationCritique}">
+                </div>
+
 
                 <!-- Bouton de soumission -->
                 <button type="submit" class="btn btn-primary">Ajouter</button>

@@ -10,10 +10,12 @@ import jakarta.persistence.Id
 class TypeArme constructor(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    val nombreDes: Int,
-    val valeurDeMax: Int,
-    val multiplicateurCritique: Int,
-    val activationCritique: Int,
+    @Column(name= "id", nullable = false)
+    var id:Long?,
+    var nom: String?,
+    var nombreDes: Int?,
+    var valeurDeMax: Int?,
+    var multiplicateurCritique: Int?,
+    var activationCritique: Int?,
 ) {
 }

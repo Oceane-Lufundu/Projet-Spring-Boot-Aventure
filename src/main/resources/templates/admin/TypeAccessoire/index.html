@@ -10,8 +10,8 @@
     <main class="container">
         <h1>Gestion des Types d'accessoires</h1>
         <div >
-            <a th:href="@{'/admin/Accessoire/create'}" class="btn btn-success">
-                Ajouter un type d'accessoire
+            <a th:href="@{'/admin/TypeAccessoire/create'}" class="btn btn-success">
+                <button class="btn btn-danger">Ajouter un type d'accessoire</button>
             </a>
         </div>
         <table class="table table-striped">
@@ -23,15 +23,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="unTypeAccessoire : ${TypeAccessoires}">
+            <tr th:each="unTypeAccessoire : ${accessoires}">
                 <td th:text="${unTypeAccessoire.nom}"></td>
                 <td th:text="${unTypeAccessoire.typeBonus}"></td>
                 <td class="d-flex">
-                    <a th:href="@{'/admin/TypeAccessoire/'+${unTypeAccessoire.id}+'/edit'}" class="btn btn-warning">
-                        Modifier
+                    <a th:href="@{'/admin/TypeAccessoire/update/'+${unTypeAccessoire.id}+'/edit'}" class="btn btn-warning">
+                        <button class="btn btn-danger">Modifier</button>
                     </a>
                     <a th:href="@{'/admin/TypeAccessoire/'+${unTypeAccessoire.id}}" class="btn btn-primary">
-                        Consulter
+                        <button class="btn btn-danger">Consulter</button>
                     </a>
                     <div>
                         <form th:action="@{'/admin/TypeAccessoire/delete'}" method="post">

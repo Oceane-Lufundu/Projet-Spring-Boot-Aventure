@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head th:replace="mesFragments :: fragHead">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="vh-100">
+    <nav th:replace="mesFragments :: fragNav"></nav>
+    <main class="container">
+        <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
+
+            <form novalidate class="validation"  th:action="@{/admin/TypeArmure}" th:object="${nouvelleTypeArmure}" method="post">
+                <h2 class="mb-4">Ajouter une Armure</h2>
+                <!-- Input pour le nom de l'armure -->
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom de la Armure</label>
+                    <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${nouvelleTypeArmure.nom}">
+                </div>
+
+                <!-- Input pour le bonus de l'armure -->
+                <div class="mb-3">
+                    <label for="bonusType" class="form-label">Bonus de la Qualité</label>
+                    <input required min="0" max="99" type="number" class="form-control" id="bonusType" name="bonusType" th:field="${nouvelleTypeArmure.bonusType}">
+                </div>
+
+                <!-- Bouton de soumission -->
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+        </div>
+    </main>
+
+</div>
+<footer th:replace="mesFragments :: fragFooter"></footer>
+<script src="/js/validation.js"></script>
+
+</body>
+</html>

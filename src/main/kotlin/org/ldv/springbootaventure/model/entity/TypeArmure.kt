@@ -7,11 +7,8 @@ class TypeArmure (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    var name: String,
-    val bonusType:Int,
-
+    var id:Long,
+    var nom: String,
+    var bonusType:Int,
     ){
-
-
-
 }

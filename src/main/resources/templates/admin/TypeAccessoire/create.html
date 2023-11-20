@@ -10,18 +10,18 @@
     <main class="container">
         <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
 
-            <form novalidate class="validation" th:action="@{/templates/admin/TypeAccessoire}" th:object="${nouvauTypeAccessoire}" method="post">
+            <form novalidate class="validation" th:action="@{'/admin/TypeAccessoire'}" th:object="${nouveauTypeAccessoire}" method="post">
                 <h2 class="mb-4">Ajouter une Accessoire</h2>
                 <!-- Input pour le nom de l'accessoire -->
                 <div class="mb-3">
                     <label for="nom" class="form-label">Nom de l'Accessoire'</label>
-                    <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${nouvauTypeAccessoire.nom}">
+                    <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${nouveauTypeAccessoire.nom}">
                 </div>
 
                 <!-- Select pour le type de l'accessoire -->
                 <div class="mb-3">
                     <label for="typeBonus" class="form-label">Type de l'Accessoire</label>
-                    <select id="typeBonus" name="type" th:field="${nouvauTypeAccessoire.typeBonus}">
+                    <select id="typeBonus" name="type" th:field="${nouveauTypeAccessoire.typeBonus}">
                         <option value="attaque">Attaque</option>
                         <option value="defense">Défense</option>
                         <option value="endurance">Endurance</option>

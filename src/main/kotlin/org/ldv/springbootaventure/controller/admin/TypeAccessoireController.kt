@@ -40,10 +40,10 @@ class TypeAccessoireController (val typeAccessoireDAO : TypeAccessoireDAO){
     @GetMapping("/admin/TypeAccessoire/{id}")
     fun show(@PathVariable id: Long, model: Model): String {
         // Récupère le type d'accessoire avec l'ID spécifié depuis la base de données
-        val uneQualite = this.typeAccessoireDAO.findById(id).orElseThrow()
+        val unTypeAccessoire = this.typeAccessoireDAO.findById(id).orElseThrow()
 
         // Ajoute le type d'accessoire au modèle pour affichage dans la vue
-        model.addAttribute("accessoire", uneQualite)
+        model.addAttribute("accessoire", unTypeAccessoire)
 
         // Retourne le nom de la vue à afficher
         return "admin/TypeAccessoire/show"
@@ -73,7 +73,7 @@ class TypeAccessoireController (val typeAccessoireDAO : TypeAccessoireDAO){
      * @return La redirection vers la page d'administration des types d'accessoires après l'ajout réussi.
      */
     @PostMapping("/admin/TypeAccessoire")
-    fun store(@ModelAttribute nouveauTypeArme: TypeArme, redirectAttributes: RedirectAttributes): String {
+    fun store(@ModelAttribute nouveauTypeAccessoire : TypeAccessoire, redirectAttributes: RedirectAttributes): String {
         // Sauvegarde le nouveau type d'arme dans la base de données
         val savedTypeAccessoire = this.typeAccessoireDAO.save(nouveauTypeAccessoire)
         // Ajoute un message de succès pour être affiché à la vue suivante
@@ -81,6 +81,9 @@ class TypeAccessoireController (val typeAccessoireDAO : TypeAccessoireDAO){
         // Redirige vers la page d'administration des types d'arme
         return "redirect:/admin/TypeAccessoire"
     }
+
+
+
     @GetMapping("/admin/TypeAccessoire/{id}/edit")
     fun edit(@PathVariable id: Long, model: Model): String {
         // Récupère le type d'accessoire avec l'ID spécifié depuis la base de données
@@ -115,17 +118,17 @@ class TypeAccessoireController (val typeAccessoireDAO : TypeAccessoireDAO){
         // Ajoute un message de succès pour être affiché à la vue suivante
         redirectAttributes.addFlashAttribute("msgSuccess", "Modification de ${savedTypeAccessoire.nom} réussie")
 
-        // Redirige vers la page d'administration des qualités
+        // Redirige vers la page d'administration des types d'accessoire
         return "redirect:/admin/TypeAccessoire"
     }
 
     /**Voici la méthode delete du contrôleur :
      * Gère la suppression d'une qualité par son identifiant.
      *
-     * @param id L'identifiant de la qualité à supprimer.
+     * @param id L'identifiant du type accessoire à supprimer.
      * @param redirectAttributes Les attributs de redirection pour transmettre des messages à la vue suivante.
-     * @return La redirection vers la page d'administration des qualités après la suppression réussie.
-     * @throws NoSuchElementException si la qualité avec l'ID spécifié n'est pas trouvée dans la base de données.
+     * @return La redirection vers la page d'administration des types d'accessoire après la suppression réussie.
+     * @throws NoSuchElementException si le type d'accessoire avec l'ID spécifié n'est pas trouvée dans la base de données.
      */
     @PostMapping("/admin/TypeAccessoire/delete")
     fun delete(@RequestParam id: Long, redirectAttributes: RedirectAttributes): String {
