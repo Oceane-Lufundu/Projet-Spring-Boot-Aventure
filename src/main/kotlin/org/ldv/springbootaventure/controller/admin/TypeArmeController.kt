@@ -20,9 +20,9 @@ class TypeArmeController (val typeArmeDAO: TypeArmeDAO ) {
     @GetMapping("/admin/TypeArme")
     fun index(model: Model): String {
         // Récupère tous les types d'arme depuis la base de données
-        val arme = this.typeArmeDAO.findAll()
+        val typeArme = this.typeArmeDAO.findAll()
         // Ajoute la liste des armes au modèle pour affichage dans la vue
-        model.addAttribute("arme", arme)
+        model.addAttribute("typearme", typeArme)
         // Retourne le nom de la vue à afficher
         return "admin/TypeArme/index"
     }
@@ -38,9 +38,9 @@ class TypeArmeController (val typeArmeDAO: TypeArmeDAO ) {
     @GetMapping("/admin/TypeArme/{id}")
     fun show(@PathVariable id: Long, model: Model): String {
         // Récupère le type d'arme avec l'ID spécifié depuis la base de données
-        val uneArme = this.typeArmeDAO.findById(id).orElseThrow()
+        val unTypeArme = this.typeArmeDAO.findById(id).orElseThrow()
         // Ajoute le type d'arme au modèle pour affichage dans la vue
-        model.addAttribute("arme", uneArme)
+        model.addAttribute("typearme", unTypeArme)
         // Retourne le nom de la vue à afficher
         return "admin/TypeArme/show"
     }
@@ -85,7 +85,7 @@ class TypeArmeController (val typeArmeDAO: TypeArmeDAO ) {
         val unTypeArme = this.typeArmeDAO.findById(id).orElseThrow()
 
         // Ajoute le type d'arme au modèle pour affichage dans la vue
-        model.addAttribute("arme", unTypeArme)
+        model.addAttribute("typearme", unTypeArme)
 
         // Retourne le nom de la vue à afficher
         return "admin/TypeArme/update"
@@ -96,8 +96,8 @@ class TypeArmeController (val typeArmeDAO: TypeArmeDAO ) {
      *
      * @param TypeArme L'objet TypeArme mis à jour à partir des données du formulaire.
      * @param redirectAttributes Les attributs de redirection pour transmettre des messages à la vue suivante.
-     * @return La redirection vers la page d'administration des types d'accessoire après la mise à jour réussie.
-     * @throws NoSuchElementException si le type d'accessoire avec l'ID spécifié n'est pas trouvée dans la base de données.
+     * @return La redirection vers la page d'administration des types d'arme après la mise à jour réussie.
+     * @throws NoSuchElementException si le type d'arme avec l'ID spécifié n'est pas trouvée dans la base de données.
      */
 
     @PostMapping("/admin/TypeArme/update")

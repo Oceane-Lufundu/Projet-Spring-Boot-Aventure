@@ -11,10 +11,10 @@
         <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
 
             <form novalidate class="validation" th:action="@{'/admin/TypeAccessoire'}" th:object="${nouveauTypeAccessoire}" method="post">
-                <h2 class="mb-4">Ajouter une Accessoire</h2>
-                <!-- Input pour le nom de l'accessoire -->
+                <h2 class="mb-4">Ajouter un Type d'Accessoire</h2>
+                <!-- Input pour le nom du type d'accessoire -->
                 <div class="mb-3">
-                    <label for="nom" class="form-label">Nom de l'Accessoire'</label>
+                    <label for="nom" class="form-label">Nom du Type d'Accessoire'</label>
                     <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${nouveauTypeAccessoire.nom}">
                 </div>
 

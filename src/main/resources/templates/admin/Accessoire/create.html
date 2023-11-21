@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head th:replace="mesFragments :: fragHead">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="vh-100">
+    <nav th:replace="mesFragments :: fragNav"></nav>
+    <main class="container">
+        <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
+
+            <form novalidate class="validation" th:action="@{'/admin/Accessoire'}" th:object="${nouvelAccessoire}" method="post">
+                <h2 class="mb-4">Ajouter un Accessoire</h2>
+                <!-- Input pour le nom de l'accessoire -->
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom de l'Accessoire'</label>
+                    <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${nouvelAccessoire.nom}">
+                </div>
+
+                <!-- Input pour la description de l'accessoire -->
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Description de l'Accessoire'</label>
+                    <input required minlength="3" maxlength="255" type="text" class="form-control" id="description" name="description"  th:field="${nouvelAccessoire.description}">
+                </div>
+
+                <!-- Input pour le chemin de l'image d'accessoire -->
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Chemin de l'image d'Accessoire'</label>
+                    <input required minlength="3" maxlength="255" type="text" class="form-control" id="cheminImage" name="cheminImage"  th:field="${nouvelAccessoire.cheminImage}">
+                </div>
+
+                <!-- Select pour la qualité de l'accessoire -->
+                <label for="qualite" class="form-label">Qualité</label>
+                <select class="form-select" id="qualite" th:field="${nouvelAccessoire.qualite.id}">
+                    <option th:each="uneQualite : ${qualites}" th:value="${uneQualite.id}" th:text="${uneQualite.nom}"></option>
+                </select>
+
+                <!-- Select pour le type de l'accessoire -->
+                <label for="typeAccessoire" class="form-label">Type d'Accessoire</label>
+                <select class="form-select" id="typeAccessoire" th:field="${nouvelAccessoire.typeAccessoire.id}">
+                    <option th:each="unTypeAccessoire : ${typeAccessoires}" th:value="${unTypeAccessoire.id}" th:text="${unTypeAccessoire.nom}"></option>
+                </select>
+
+                <!-- Bouton de soumission -->
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+        </div>
+    </main>
+
+</div>
+<footer th:replace="mesFragments :: fragFooter"></footer>
+<script src="/js/validation.js"></script>
+
+</body>
+</html>

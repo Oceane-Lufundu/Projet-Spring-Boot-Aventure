@@ -20,10 +20,10 @@ class TypeAccessoireController (val typeAccessoireDAO : TypeAccessoireDAO){
     @GetMapping("/admin/TypeAccessoire")
     fun index(model: Model): String {
         // Récupère tous les types d'accessoires depuis la base de données
-        val accessoires = this.typeAccessoireDAO.findAll()
+        val typeAccessoires = this.typeAccessoireDAO.findAll()
 
         // Ajoute la liste des types d'accessoires au modèle pour affichage dans la vue
-        model.addAttribute("accessoires", accessoires)
+        model.addAttribute("typeAccessoires", typeAccessoires)
 
         // Retourne le nom de la vue à afficher
         return "admin/TypeAccessoire/index"
@@ -35,7 +35,7 @@ class TypeAccessoireController (val typeAccessoireDAO : TypeAccessoireDAO){
      * @param id L'identifiant unique du type d'accessoire à afficher.
      * @param model Le modèle utilisé pour transmettre les données à la vue.
      * @return Le nom de la vue à afficher.
-     * @throws NoSuchElementException si la qualité avec l'ID spécifié n'est pas trouvée.
+     * @throws NoSuchElementException si le type d'accessoire avec l'ID spécifié n'est pas trouvée.
      */
     @GetMapping("/admin/TypeAccessoire/{id}")
     fun show(@PathVariable id: Long, model: Model): String {
@@ -43,7 +43,7 @@ class TypeAccessoireController (val typeAccessoireDAO : TypeAccessoireDAO){
         val unTypeAccessoire = this.typeAccessoireDAO.findById(id).orElseThrow()
 
         // Ajoute le type d'accessoire au modèle pour affichage dans la vue
-        model.addAttribute("accessoire", unTypeAccessoire)
+        model.addAttribute("typeAccessoires", unTypeAccessoire)
 
         // Retourne le nom de la vue à afficher
         return "admin/TypeAccessoire/show"
@@ -90,7 +90,7 @@ class TypeAccessoireController (val typeAccessoireDAO : TypeAccessoireDAO){
         val unTypeAccessoire = this.typeAccessoireDAO.findById(id).orElseThrow()
 
         // Ajoute le type d'accessoire au modèle pour affichage dans la vue
-        model.addAttribute("accessoire", unTypeAccessoire)
+        model.addAttribute("typeAccessoires", unTypeAccessoire)
 
         // Retourne le nom de la vue à afficher
         return "admin/TypeAccessoire/update"

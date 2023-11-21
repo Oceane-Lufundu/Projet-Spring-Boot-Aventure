@@ -1,25 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="fr">
+<head th:replace="mesFragments :: fragHead">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Les types d'armes</title>
 </head>
 <body>
-<main class="container">
-    <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
+<div class="vh-100">
+    <nav th:replace="mesFragments :: fragNav"></nav>
+    <main class="container">
+        <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
 
-        <form novalidate class="validation" th:action="@{/admin/TypeAccessoire/update}" th:object="${accessoire}" method="post">
-            <h2 class="mb-4">Ajouter une Accessoire</h2>
+        <form novalidate class="validation" th:action="@{/admin/TypeAccessoire/update}" th:object="${typeAccessoires}" method="post">
+            <h2 class="mb-4">Ajouter un Type d'Accessoire</h2>
+
+            <!-- Input pour l'id de l'accessoire -->
+            <input readonly required type="hidden" name="id" th:field="${typeAccessoires.id}">
+
             <!-- Input pour le nom de l'accessoire -->
             <div class="mb-3">
-                <label for="nom" class="form-label">Nom de l'Accessoire'</label>
-                <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${accessoire.nom}">
+                <label for="nom" class="form-label">Nom du Type d'Accessoire'</label>
+                <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${typeAccessoires.nom}">
             </div>
 
             <!-- Select pour le type de l'accessoire -->
             <div class="mb-3">
                 <label for="type" class="form-label">Type de l'Accessoire</label>
-                <select id="type" name="type" th:field="${accessoire.typeBonus}">
+                <select id="type" name="type" th:field="${typeAccessoires.typeBonus}">
                     <option value="attaque">Attaque</option>
                     <option value="defense">Défense</option>
                     <option value="endurance">Endurance</option>
@@ -30,7 +36,9 @@
             <!-- Bouton de soumission -->
             <button type="submit" class="btn btn-primary">Modifier</button>
         </form>
-    </div>
-</main>
+        </div>
+    </main>
+</div>
+<footer th:replace="mesFragments :: fragFooter"></footer>
 </body>
 </html>

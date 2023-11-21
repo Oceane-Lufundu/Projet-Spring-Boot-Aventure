@@ -8,10 +8,10 @@
 <div class="vh-100">
     <nav th:replace="mesFragments :: fragNav"></nav>
     <main class="container">
-        <h1 th:style="${'type:'+accessoire.typeBonus}" th:text="'accessoire'+${accessoire.nom}"></h1>
+        <h1 th:style="${'type:'+typeAccessoires.typeBonus}" th:text="'typeAccessoire'+${typeAccessoires.nom}"></h1>
         <ul>
-            <li th:text="'Nom : '+ ${accessoire.nom}"></li>
-            <li th:text="'Type : '+${accessoire.typeBonus}"></li>
+            <li th:text="'Nom : '+ ${typeAccessoires.nom}"></li>
+            <li th:text="'Type : '+${typeAccessoires.typeBonus}"></li>
         </ul>
     </main>
 </div>

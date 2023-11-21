@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head th:replace="mesFragments :: fragHead">
+    <meta charset="UTF-8">
+    <title>Les armes</title>
+</head>
+<body>
+<div class="vh-100">
+    <nav th:replace="mesFragments :: fragNav"></nav>
+    <main class="container">
+        <h1>Gestion des armes</h1>
+        <div >
+            <a th:href="@{'/admin/Arme/create'}" class="btn btn-success">
+                Ajouter une arme
+            </a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Qualité</th>
+                <th>Type de l'arme</th>
+            </tr>
+            </thead>
+            <tbody>
+            <
+            <tr th:each="uneArme : ${arme}">
+                <td th:text="${uneArme.nom}"></td>
+                <td th:text="${uneArme.description}"></td>
+                <td th:text="${uneArme.cheminImage}"></td>
+                <td th:text="${uneArme.qualite}"></td>
+                <td th:text="${uneArme.typeArme}"></td>
+                <td class="d-flex">
+                    <a th:href="@{'/admin/Arme/'+${uneArme.id}+'/edit'}" class="btn btn-warning">
+                        Modifier
+                    </a>
+                    <a th:href="@{'/admin/Arme/'+${uneArme.id}}" class="btn btn-primary">
+                        Consulter
+                    </a>
+                    <div>
+                        <form th:action="@{'/admin/Arme/delete'}" method="post">
+                            <input type="hidden" name="id" th:value="${uneArme.id}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+<footer th:replace="mesFragments :: fragFooter"></footer>
+</body>
+</html>

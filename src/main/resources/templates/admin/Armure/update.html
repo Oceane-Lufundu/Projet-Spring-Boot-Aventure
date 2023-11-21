@@ -1,7 +1,7 @@
 <main class="container">
     <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
 
-        <form novalidate class="validation"  th:action="@{/admin/TypeArmure/update}" th:object="${armure}" method="post">
+        <form novalidate class="validation"  th:action="@{/admin/Armure/update}" th:object="${armure}" method="post">
             <h2 class="mb-4">Modification d'une armure</h2>
 
             <!-- Input pour l'id de l'armure -->
@@ -13,10 +13,16 @@
                 <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${armure.nom}">
             </div>
 
-            <!-- Input pour le bonus de l'armure -->
+            <!-- Input pour la description de l'armure -->
             <div class="mb-3">
-                <label for="bonusType" class="form-label">Bonus de l'armure</label>
-                <input required min="0" max="99" type="number" class="form-control" id="bonusType" name="bonusType" th:field="${armure.bonusType}">
+                <label for="description" class="form-label">Bonus de l'armure</label>
+                <input required min="0" max="99" type="number" class="form-control" id="description" name="bonusType" th:field="${armure.description}">
+            </div>
+
+            <!-- Input pour le cheminImage de l'armure -->
+            <div class="mb-3">
+                <label for="cheminImage" class="form-label">Bonus de l'armure</label>
+                <input required min="0" max="99" type="number" class="form-control" id="cheminImage" name="bonusType" th:field="${armure.cheminImage}">
             </div>
 
             <!-- Bouton de soumission -->
