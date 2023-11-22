@@ -12,7 +12,7 @@ class Armure constructor(
     nom: String?,
     description:String?,
     cheminImage:String?,
-    bonusType:Int,
+    bonusType:Int?,
 //TODO Attributs spécifiques aux armures
         //Association entre Armure et Qualite
         //Plusieurs armures peuvent être rataché a une qualite

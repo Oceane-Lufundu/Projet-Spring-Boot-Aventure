@@ -20,28 +20,28 @@
                 <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${arme.nom}">
             </div>
 
-            <!-- Input pour le Nombre de dés du type d'arme-->
+            <!-- Input pour la description de l'arme-->
             <div class="mb-3">
-                <label for="NombreDes" class="form-label">Nombre de dé </label>
-                <input required min="1" max="2" type="number" class="form-control" id="NombreDes" name="NombreDes" th:field="${arme.nombreDes}">
+                <label for="description" class="form-label">description de l'arme  </label>
+                <input required minlength="3" maxlength="255" type="text" class="form-control" id="description" name="description"   th:field="${arme.description}">
             </div>
 
-            <!-- Input pour la valeur max du dé  -->
+            <!-- Input pour le chemin image  -->
             <div class="mb-3">
-                <label for="valeurDeMax" class="form-label">Valeur maximale des dés</label>
-                <input required min="6" max="20" type="number" class="form-control" id="valeurDeMax" name="valeurDeMax" th:field="${arme.valeurDeMax}">
+                <label for="cheminImage" class="form-label">chemin image</label>
+                <input required minlength="3" maxlength="255" type="text" class="form-control" id="cheminImage" name="cheminImage" th:field="${arme.cheminImage}">
             </div>
 
-            <!-- Input pour la valeur du multiplicateur Critique -->
+            <!-- Input pour la qualité de l'arme  -->
             <div class="mb-3">
-                <label for="multiplicateurCritique" class="form-label">Valeur du multiplicateur critique</label>
-                <input required min="1" max="10" type="number" class="form-control" id="multiplicateurCritique" name="multiplicateurCritique" th:field="${arme.multiplicateurCritique}">
+                <label for="qualite" class="form-label">Qualité de l'arme</label>
+                <input required min="1" max="10" type="number" class="form-control" id="qualite" name="qualite" th:field="${arme.qualite}">
             </div>
 
-            <!-- Input pour la valeur de l'activation Critique-->
+            <!-- Input pour le type d'arme-->
             <div class="mb-3">
-                <label for="activationCritique" class="form-label">Valeur de l'activation Critique</label>
-                <input required min="1" max="20" type="number" class="form-control" id="activationCritique" name="activationCritique" th:field="${arme.activationCritique}">
+                <label for="typeArme" class="form-label">Type de l'arme</label>
+                <input required min="1" max="20" type="number" class="form-control" id="typeArme" name="typeArme" th:field="${arme.typeArme}">
             </div>
             <!-- Bouton de soumission -->
             <button type="submit" class="btn btn-primary">Modifier</button>

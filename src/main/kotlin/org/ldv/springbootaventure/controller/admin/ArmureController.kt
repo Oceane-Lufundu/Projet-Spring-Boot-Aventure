@@ -2,6 +2,7 @@ package org.ldv.springbootaventure.controller.admin
 
 import org.ldv.springbootaventure.model.dao.ArmeDAO
 import org.ldv.springbootaventure.model.dao.ArmureDAO
+import org.ldv.springbootaventure.model.dao.QualiteDAO
 import org.ldv.springbootaventure.model.dao.TypeArmureDAO
 import org.ldv.springbootaventure.model.entity.Armure
 import org.ldv.springbootaventure.model.entity.TypeArmure
@@ -10,7 +11,9 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
 @Controller
-class ArmureController (val armureDAO: ArmureDAO){
+class ArmureController (val armureDAO: ArmureDAO, private val typeArmureDAO: TypeArmureDAO,
+                        private val qualiteDAO: QualiteDAO
+){
     /**
      * Affiche la liste de toutes les armures.
      *
@@ -60,6 +63,21 @@ class ArmureController (val armureDAO: ArmureDAO){
         // Crée une nouvelle instance d'armure avec des valeurs par défaut
         val nouvelleArmure = Armure(0, null,null,null,0)
 
+        // Récupère les valeurs de Qualite
+        val lesQualites = qualiteDAO.findAll()
+
+        // Récupère les valeurs de TypeArmure
+        val lesTypeArmures = typeArmureDAO.findAll()
+
+        // Ajoute la nouvelle armure au modèle pour affichage dans le formulaire de création
+        model.addAttribute("nouvelleArmure", nouvelleArmure)
+
+        // Ajoute les valeurs de Qualite à la nouvelle armure
+        model.addAttribute("qualites",lesQualites)
+
+        // Ajoute les valeurs de TypeArmure à la nouvelle armure
+        model.addAttribute("typeArmures",lesTypeArmures)
+
         // Ajoute la nouvelle armure au modèle pour affichage dans le formulaire de création
         model.addAttribute("nouvelleArmure", nouvelleArmure)
 
@@ -96,17 +114,16 @@ class ArmureController (val armureDAO: ArmureDAO){
         return "admin/TypeArmure/update"
     }
 
-
     /**
      * Gère la soumission du formulaire de mise à jour de qualité.
      *
-     * @param armure L'objet Armure mis à jour à partir des données du formulaire.
+     * @param Armure L'objet Armure mis à jour à partir des données du formulaire.
      * @param redirectAttributes Les attributs de redirection pour transmettre des messages à la vue suivante.
      * @return La redirection vers la page d'administration des armures après la mise à jour réussie.
      * @throws NoSuchElementException si l'armure avec l'ID spécifié n'est pas trouvée dans la base de données.
      */
     @PostMapping("/admin/Armure/update")
-    fun update(@ModelAttribute  Armure: Armure, redirectAttributes: RedirectAttributes): String {
+    fun update(@ModelAttribute Armure: Armure, redirectAttributes: RedirectAttributes): String {
         // Recherche de l'armure existante dans la base de données
         val armureModifier = this.armureDAO.findById(Armure.id ?: 0).orElseThrow()
 
@@ -114,6 +131,8 @@ class ArmureController (val armureDAO: ArmureDAO){
         armureModifier.nom = Armure.nom
         armureModifier.description = Armure.description
         armureModifier.cheminImage = Armure.cheminImage
+        armureModifier.qualite = Armure.qualite
+        armureModifier.typeArmure = Armure.typeArmure
 
         // Sauvegarde l'armure modifiée dans la base de données
         val savedArmure = this.armureDAO.save(armureModifier)

@@ -20,11 +20,15 @@
             <tr>
                 <th>Nom</th>
                 <th>Bonus</th>
+                <th>Qualité</th>
+                <th>Type de l'Armure</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="uneArmure : ${armures}">
                 <td th:text="${uneArmure.nom}"></td>
+                <td th:text="${uneArmure.qualite}"></td>
+                <td th:text="${uneArmure.typeArmure}"></td>
                 <td th:text="${uneArmure.description}"></td>
                 <td th:text="${uneArmure.cheminImage}"></td>
                 <td class="d-flex">

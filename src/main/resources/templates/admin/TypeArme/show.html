@@ -8,13 +8,13 @@
 <div class="vh-100">
     <nav th:replace="mesFragments :: fragNav"></nav>
     <main class="container">
-        <h1 th:text="'Type '+${arme.nom}"></h1>
+        <h1 th:text="'Type '+${typearme.nom}"></h1>
         <ul>
-            <li th:text="'Nom : '+ ${arme.nom}"></li>
-            <li th:text="'nombre des : '+${arme.nombreDes}"></li>
-            <li th:text="'valeur de max : '+${arme.valeurDeMax}"></li>
-            <li th:text="'multiplicateur Critique : '+${arme.multiplicateurCritique}"></li>
-            <li th:text="'activation Critique : '+${arme.activationCritique}"></li>
+            <li th:text="'Nom : '+ ${typearme.nom}"></li>
+            <li th:text="'nombre des : '+${typearme.nombreDes}"></li>
+            <li th:text="'valeur de max : '+${typearme.valeurDeMax}"></li>
+            <li th:text="'multiplicateur Critique : '+${typearme.multiplicateurCritique}"></li>
+            <li th:text="'activation Critique : '+${typearme.activationCritique}"></li>
         </ul>
     </main>
 </div>

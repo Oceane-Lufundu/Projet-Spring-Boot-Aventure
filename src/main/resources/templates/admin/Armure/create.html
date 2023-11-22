@@ -13,6 +13,7 @@
 
             <form novalidate class="validation"  th:action="@{/admin/Armure}" th:object="${nouvelleArmure}" method="post">
                 <h2 class="mb-4">Ajouter une Armure</h2>
+
                 <!-- Input pour le nom de l'armure -->
                 <div class="mb-3">
                     <label for="nom" class="form-label">Nom de la Armure</label>
@@ -21,8 +22,8 @@
 
                 <!-- Input pour la description de l'armure -->
                 <div class="mb-3">
-                    <label for="description" class="form-label">Bonus de la Qualité</label>
-                    <input required min="0" max="99" type="number" class="form-control" id="description" name="description" th:field="${nouvelleArmure.description}">
+                    <label for="description" class="form-label">Description de l'Armure</label>
+                    <input required minlength="3" maxlength="255" type="text" class="form-control" id="description" name="nom"  th:field="${nouvelleArmure.description}">
                 </div>
 
                 <!-- Input pour le cheminImage de l'armure -->
@@ -30,6 +31,18 @@
                     <label for="cheminImage" class="form-label">Bonus de la Qualité</label>
                     <input required min="0" max="99" type="number" class="form-control" id="cheminImage" name="cheminImage" th:field="${nouvelleArmure.cheminImage}">
                 </div>
+
+                <!-- Select pour la qualité de l'accessoire -->
+                <label for="qualite" class="form-label">Qualité</label>
+                <select class="form-select" id="qualite" th:field="${nouvelleArmure.qualite.id}">
+                    <option th:each="uneQualite : ${qualites}" th:value="${uneQualite.id}" th:text="${uneQualite.nom}"></option>
+                </select>
+
+                <!-- Select pour le type de l'accessoire -->
+                <label for="typeArmure" class="form-label">Type d'Armure</label>
+                <select class="form-select" id="typeArmure" th:field="${nouvelleArmure.typeArmure.id}">
+                    <option th:each="unTypeArmure : ${typeArmures}" th:value="${unTypeArmure.id}" th:text="${unTypeArmure.nom}"></option>
+                </select>
 
                 <!-- Bouton de soumission -->
                 <button type="submit" class="btn btn-primary">Ajouter</button>

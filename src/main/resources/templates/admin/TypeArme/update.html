@@ -10,38 +10,38 @@
 <main class="container">
     <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
 
-        <form novalidate class="validation"  th:action="@{/admin/TypeArme/update}" th:object="${arme}" method="post">
+        <form novalidate class="validation"  th:action="@{/admin/TypeArme/update}" th:object="${typearme}" method="post">
             <h2 class="mb-4">Modification d'une Arme</h2>
             <!-- Input pour l'id du type d'arme -->
-            <input readonly required type="hidden" name="id" th:field="${arme.id}">
+            <input readonly required type="hidden" name="id" th:field="${typearme.id}">
             <!-- Input pour le nom du type d'arme -->
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom de l'arme</label>
-                <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${arme.nom}">
+                <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${typearme.nom}">
             </div>
 
             <!-- Input pour le Nombre de dés du type d'arme-->
             <div class="mb-3">
                 <label for="NombreDes" class="form-label">Nombre de dé </label>
-                <input required min="1" max="2" type="number" class="form-control" id="NombreDes" name="NombreDes" th:field="${arme.nombreDes}">
+                <input required min="1" max="2" type="number" class="form-control" id="NombreDes" name="NombreDes" th:field="${typearme.nombreDes}">
             </div>
 
             <!-- Input pour la valeur max du dé  -->
             <div class="mb-3">
                 <label for="valeurDeMax" class="form-label">Valeur maximale des dés</label>
-                <input required min="6" max="20" type="number" class="form-control" id="valeurDeMax" name="valeurDeMax" th:field="${arme.valeurDeMax}">
+                <input required min="6" max="20" type="number" class="form-control" id="valeurDeMax" name="valeurDeMax" th:field="${typearme.valeurDeMax}">
             </div>
 
             <!-- Input pour la valeur du multiplicateur Critique -->
             <div class="mb-3">
                 <label for="multiplicateurCritique" class="form-label">Valeur du multiplicateur critique</label>
-                <input required min="1" max="10" type="number" class="form-control" id="multiplicateurCritique" name="multiplicateurCritique" th:field="${arme.multiplicateurCritique}">
+                <input required min="1" max="10" type="number" class="form-control" id="multiplicateurCritique" name="multiplicateurCritique" th:field="${typearme.multiplicateurCritique}">
             </div>
 
             <!-- Input pour la valeur de l'activation Critique-->
             <div class="mb-3">
                 <label for="activationCritique" class="form-label">Valeur de l'activation Critique</label>
-                <input required min="1" max="20" type="number" class="form-control" id="activationCritique" name="activationCritique" th:field="${arme.activationCritique}">
+                <input required min="1" max="20" type="number" class="form-control" id="activationCritique" name="activationCritique" th:field="${typearme.activationCritique}">
             </div>
             <!-- Bouton de soumission -->
             <button type="submit" class="btn btn-primary">Modifier</button>

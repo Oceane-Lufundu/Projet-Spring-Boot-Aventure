@@ -19,6 +19,7 @@
             <tr>
                 <th>Nom</th>
                 <th>Description</th>
+                <th>Chemin image</th>
                 <th>Qualité</th>
                 <th>Type de l'arme</th>
             </tr>
@@ -29,7 +30,7 @@
                 <td th:text="${uneArme.nom}"></td>
                 <td th:text="${uneArme.description}"></td>
                 <td th:text="${uneArme.cheminImage}"></td>
-                <td th:text="${uneArme.qualite}"></td>
+                <td th:text="${uneArme.qualite.nom}"></td>
                 <td th:text="${uneArme.typeArme}"></td>
                 <td class="d-flex">
                     <a th:href="@{'/admin/Arme/'+${uneArme.id}+'/edit'}" class="btn btn-warning">

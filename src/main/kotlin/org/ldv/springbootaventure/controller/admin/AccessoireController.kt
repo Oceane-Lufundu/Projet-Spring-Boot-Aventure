@@ -59,7 +59,7 @@ class AccessoireController (val accessoireDAO : AccessoireDAO, val qualiteDAO: Q
     @GetMapping("/admin/Accessoire/create")
     fun create(model: Model): String {
         // Crée une nouvelle instance de Accessoire avec des valeurs par défaut
-        val nouvelAccessoire = Accessoire(0,"","","",null,null)
+        val nouvelAccessoire = Accessoire(1,"","","",null,null)
         // Récupère les valeurs de Qualite
         val lesQualites = qualiteDAO.findAll()
         // Récupère les valeurs de TypeAccessoire
@@ -112,7 +112,7 @@ class AccessoireController (val accessoireDAO : AccessoireDAO, val qualiteDAO: Q
      * @throws NoSuchElementException si l'accessoire avec l'ID spécifié n'est pas trouvée dans la base de données.
      */
     @PostMapping("/admin/Accessoire/update")
-    fun update(@ModelAttribute accessoire: Accessoire, redirectAttributes: RedirectAttributes): String {
+    fun update(@ModelAttribute accessoire: Accessoire, model : Model, redirectAttributes: RedirectAttributes): String {
         // Recherche l'accessoire existante dans la base de données
         val accessoireModifier = this.accessoireDAO.findById(accessoire.id ?: 0).orElseThrow()
 
@@ -120,8 +120,20 @@ class AccessoireController (val accessoireDAO : AccessoireDAO, val qualiteDAO: Q
         accessoireModifier.nom = accessoire.nom
         accessoireModifier.description = accessoire.description
         accessoireModifier.cheminImage = accessoire.cheminImage
-        accessoireModifier.qualite = accessoire.qualite
-        accessoireModifier.typeAccessoire = accessoire.typeAccessoire
+
+        // Récupère le qualite d'un objet "accessoire" depuis la base de données et le met à jour dans un autre objet "accessoireModifier"
+        // Autre possibilité => accessoireModifier.qualite=accessoire.qualite
+        val laQualite = qualiteDAO.findById(accessoire.qualite!!.id ?: 0).orElseThrow()
+        // Ajoute les valeurs de Qualite au nouvel accessoire
+        model.addAttribute("qualites",laQualite)
+        accessoireModifier.qualite = laQualite
+
+        // Récupère le type d'accessoire d'un objet "accessoire" depuis la base de données et le met à jour dans un autre objet "accessoireModifier"
+        // Autre possibilité => accessoireModifier.qualite=accessoire.qualite
+        val leTypeAccessoire = typeAccessoireDAO.findById(accessoire.typeAccessoire!!.id ?: 0).orElseThrow()
+        accessoireModifier.typeAccessoire = leTypeAccessoire
+        // Ajoute les valeurs de TypeAccessoire au nouvel accessoire
+        model.addAttribute("typeAccessoires",leTypeAccessoire)
 
         // Sauvegarde l'accessoire modifiée dans la base de données
         val savedAccessoire = this.accessoireDAO.save(accessoireModifier)

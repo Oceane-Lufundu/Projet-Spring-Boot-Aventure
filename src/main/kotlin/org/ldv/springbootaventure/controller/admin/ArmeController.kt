@@ -2,13 +2,15 @@ package org.ldv.springbootaventure.controller.admin
 
 
 import org.ldv.springbootaventure.model.dao.ArmeDAO
+import org.ldv.springbootaventure.model.dao.QualiteDAO
+import org.ldv.springbootaventure.model.dao.TypeArmeDAO
 import org.ldv.springbootaventure.model.entity.Arme
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
 @Controller
-class ArmeController (val armeDAO : ArmeDAO) {
+class ArmeController (val armeDAO : ArmeDAO, private val qualiteDAO: QualiteDAO, private val typeArmeDAO: TypeArmeDAO) {
     /**
      * Fonction qui affiche la liste de tous les armes.
      * @param model Le modèle utilisé pour transmettre les données à la vue.
@@ -52,9 +54,19 @@ class ArmeController (val armeDAO : ArmeDAO) {
     @GetMapping("/admin/Arme/create")
     fun create(model: Model): String {
         // Crée une nouvelle instance d'Arme avec des valeurs par défaut
-        val nouvelleArme = Arme(null, null, null, null,null,null)
+        val nouvelleArme = Arme(null, "", "", "",null,null)
+        // Récupère les valeurs de Qualité
+        val lesQualites = qualiteDAO.findAll()
+        // Récupère les valeurs de TypeArme
+        val lesTypeArme = typeArmeDAO.findAll()
         // Ajoute la nouvelle arme au modèle pour affichage dans le formulaire de création
         model.addAttribute("arme", nouvelleArme)
+        // Ajoute les valeurs de Qualite à la nouvelle arme
+        model.addAttribute("qualites",lesQualites)
+        // Ajoute les valeurs de TypeArme à la nouvelle arme
+        model.addAttribute("typeArme",lesTypeArme)
+
+
         // Retourne le nom de la vue à afficher (le formulaire de création)
         return "admin/Arme/create"
     }

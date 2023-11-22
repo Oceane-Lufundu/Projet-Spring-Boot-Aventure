@@ -13,10 +13,10 @@
         <form novalidate class="validation" th:action="@{/admin/TypeAccessoire/update}" th:object="${typeAccessoires}" method="post">
             <h2 class="mb-4">Ajouter un Type d'Accessoire</h2>
 
-            <!-- Input pour l'id de l'accessoire -->
+            <!-- Input pour l'id du type d'accessoire -->
             <input readonly required type="hidden" name="id" th:field="${typeAccessoires.id}">
 
-            <!-- Input pour le nom de l'accessoire -->
+            <!-- Input pour le nom du type d'accessoire -->
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom du Type d'Accessoire'</label>
                 <input required minlength="3" maxlength="255" type="text" class="form-control" id="nom" name="nom"  th:field="${typeAccessoires.nom}">
