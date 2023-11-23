@@ -11,8 +11,8 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
 @Controller
-class ArmureController (val armureDAO: ArmureDAO, private val typeArmureDAO: TypeArmureDAO,
-                        private val qualiteDAO: QualiteDAO
+class ArmureController (val armureDAO: ArmureDAO,  val typeArmureDAO: TypeArmureDAO,
+                         val qualiteDAO: QualiteDAO
 ){
     /**
      * Affiche la liste de toutes les armures.
@@ -69,8 +69,7 @@ class ArmureController (val armureDAO: ArmureDAO, private val typeArmureDAO: Typ
         // Récupère les valeurs de TypeArmure
         val lesTypeArmures = typeArmureDAO.findAll()
 
-        // Ajoute la nouvelle armure au modèle pour affichage dans le formulaire de création
-        model.addAttribute("nouvelleArmure", nouvelleArmure)
+
 
         // Ajoute les valeurs de Qualite à la nouvelle armure
         model.addAttribute("qualites",lesQualites)
@@ -117,28 +116,28 @@ class ArmureController (val armureDAO: ArmureDAO, private val typeArmureDAO: Typ
     /**
      * Gère la soumission du formulaire de mise à jour de qualité.
      *
-     * @param Armure L'objet Armure mis à jour à partir des données du formulaire.
+     * @param armure L'objet Armure mis à jour à partir des données du formulaire.
      * @param redirectAttributes Les attributs de redirection pour transmettre des messages à la vue suivante.
      * @return La redirection vers la page d'administration des armures après la mise à jour réussie.
      * @throws NoSuchElementException si l'armure avec l'ID spécifié n'est pas trouvée dans la base de données.
      */
     @PostMapping("/admin/Armure/update")
-    fun update(@ModelAttribute Armure: Armure, redirectAttributes: RedirectAttributes): String {
+    fun update(@ModelAttribute  armure: Armure, redirectAttributes: RedirectAttributes): String {
         // Recherche de l'armure existante dans la base de données
-        val armureModifier = this.armureDAO.findById(Armure.id ?: 0).orElseThrow()
+        val armureModifier = this.armureDAO.findById(armure.id ?: 0).orElseThrow()
 
         // Mise à jour des propriétés de l'armure avec les nouvelles valeurs du formulaire
-        armureModifier.nom = Armure.nom
-        armureModifier.description = Armure.description
-        armureModifier.cheminImage = Armure.cheminImage
-        armureModifier.qualite = Armure.qualite
-        armureModifier.typeArmure = Armure.typeArmure
+        armureModifier.nom = armure.nom
+        armureModifier.description = armure.description
+        armureModifier.cheminImage = armure.cheminImage
+        armureModifier.qualite = armure.qualite
+        armureModifier.typeArmure = armure.typeArmure
 
         // Sauvegarde l'armure modifiée dans la base de données
-        val savedArmure = this.armureDAO.save(armureModifier)
+        //val savedArmure = this.armureDAO.save(armureModifier)
 
         // Ajoute un message de succès pour être affiché à la vue suivante
-        redirectAttributes.addFlashAttribute("msgSuccess", "Modification de ${savedArmure.nom} réussie")
+        //redirectAttributes.addFlashAttribute("msgSuccess", "Modification de ${savedArmure.nom} réussie")
 
         // Redirige vers la page d'administration des armures
         return "redirect:/admin/TypeArmure"

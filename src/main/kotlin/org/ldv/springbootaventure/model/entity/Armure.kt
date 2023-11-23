@@ -2,8 +2,6 @@ package org.ldv.springbootaventure.model.entity
 
 import jakarta.persistence.*
 
-
-
 @Entity
 
 @DiscriminatorValue("armure")
@@ -27,6 +25,10 @@ class Armure constructor(
 @ManyToOne
 @JoinColumn(name = "typeArmure_id")
 var typeArmure: TypeArmure?= null,
-) : Item(id, nom.toString(), description.toString(), cheminImage){
+): Item(id, nom.toString(), description.toString(), cheminImage){
 
+    //Association entre Personnage et Armure
+    //plusieurs utilisateurs peuvent être rataché à une armure
+    @OneToMany(mappedBy = "armure")
+    var personnage: MutableList<Personnage> = mutableListOf()
 }

@@ -13,7 +13,14 @@ class TypeArmure constructor(
     //Association entre TypeArmure et Armure
     //Un type d'armure peut avoir plusieurs armures
     @OneToMany(mappedBy = "typeArmure")
-    var armure: MutableList<Armure> = mutableListOf()
+    var armure: MutableList<Armure> = mutableListOf(),
+
+    //Association entre Personnage et TypeArmure
+    //plusieurs utilisateurs peuvent être rataché à un TypeArmure
+    @ManyToOne(cascade = [CascadeType.REMOVE])
+    @JoinColumn(name = "personnage_id")
+    open var personnage: Personnage? = null,
+
 ){
 }
 
