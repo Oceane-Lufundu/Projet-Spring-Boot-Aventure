@@ -12,3 +12,4 @@ insert into type_arme (nom,nombreDes,valeurDeMax,multiplicateurCritique,activati
 insert into type_arme (nom,nombreDes,valeurDeMax,multiplicateurCritique,activationCritique) values ('flèche',1,8,6,15)
 insert into type_arme (nom,nombreDes,valeurDeMax,multiplicateurCritique,activationCritique) values ('couteau suisse',1,6,5,3)
 insert into type_arme (nom,nombreDes,valeurDeMax,multiplicateurCritique,activationCritique) values ('bazooka',2,20,10,19)
+insert into type_accessoire (nom,typeBonus) values ('collier',attaque)

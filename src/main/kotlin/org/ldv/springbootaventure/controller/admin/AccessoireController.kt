@@ -59,7 +59,7 @@ class AccessoireController (val accessoireDAO : AccessoireDAO, val qualiteDAO: Q
     @GetMapping("/admin/Accessoire/create")
     fun create(model: Model): String {
         // Crée une nouvelle instance de Accessoire avec des valeurs par défaut
-        val nouvelAccessoire = Accessoire(1,"","","",null,null)
+        val nouvelAccessoire = Accessoire(0,"","","",null,null)
         // Récupère les valeurs de Qualite
         val lesQualites = qualiteDAO.findAll()
         // Récupère les valeurs de TypeAccessoire

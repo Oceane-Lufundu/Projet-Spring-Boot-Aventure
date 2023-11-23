@@ -10,7 +10,7 @@ import org.ldv.springbootaventure.model.entity.TypeAccessoire
 @Entity
 @DiscriminatorValue("accessoire")
 class Accessoire constructor(
-    id: Long,
+    id: Long?,
     nom: String,
     description: String,
     cheminImage: String?,

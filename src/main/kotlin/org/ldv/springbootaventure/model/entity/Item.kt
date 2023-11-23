@@ -22,7 +22,12 @@ open abstract class Item constructor(
 // Description de l'item
     var description: String,
 //Chemin vers l'image de l'item
-    var cheminImage:String?
+    var cheminImage:String?,
+
+//association entre classe "Item" et "LigneInventaire"
+    @OneToMany(mappedBy = "item")
+    var ligneInventaire: List<LigneInventaire> = mutableListOf()
+
 ) {
 // TODO sprint 5: methode utiliser
 
