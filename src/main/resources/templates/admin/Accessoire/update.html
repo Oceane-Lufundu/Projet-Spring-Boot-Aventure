@@ -37,13 +37,13 @@
                 <!-- Select pour la qualité de l'accessoire -->
                 <label for="qualite" class="form-label">Qualité</label>
                 <select class="form-select" id="qualite" th:field="${accessoires.qualite.id}">
-                    <option th:each="uneQualite : ${qualite}" th:value="${uneQualite.id}" th:text="${uneQualite.nom}"></option>
+                    <option th:each="uneQualite : ${qualites}" th:value="${uneQualite.id}" th:text="${uneQualite.nom}"></option>
                 </select>
 
                 <!-- Select pour le type de l'accessoire -->
                 <label for="typeAccessoire" class="form-label">Type d'Accessoire</label>
                 <select class="form-select" id="typeAccessoire" th:field="${accessoires.typeAccessoire.id}">
-                    <option th:each="unTypeAccessoire : ${typeAccessoire}" th:value="${unTypeAccessoire.id}" th:text="${unTypeAccessoire.nom}"></option>
+                    <option th:each="unTypeAccessoire : ${typeAccessoires}" th:value="${unTypeAccessoire.id}" th:text="${unTypeAccessoire.nom}"></option>
                 </select>
 
                 <!-- Bouton de soumission -->

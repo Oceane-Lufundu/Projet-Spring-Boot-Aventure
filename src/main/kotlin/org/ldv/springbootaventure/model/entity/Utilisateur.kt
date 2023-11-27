@@ -14,12 +14,12 @@ class Utilisateur (
     //Un utilisateur peut être rataché à plusieurs personnages
     @OneToMany
     @JoinColumn(name = "personnage_id")
-    var personnage: Personnage? = null,
+    var personnages: MutableList<Personnage> = mutableListOf(),
     //Association entre Utilisateur et Campagne
     //Un utilisateur peut être rataché à plusieurs campagnes
     @OneToMany
     @JoinColumn(name = "campagne_id")
-    var campagne: Campagne?= null,
+    var campagnes: MutableList<Campagne> = mutableListOf(),
     //Association entre Utilisateur et Role
     //Plusieurs utilisateurs peuvent être rataché à plusieurs roles
     @ManyToMany

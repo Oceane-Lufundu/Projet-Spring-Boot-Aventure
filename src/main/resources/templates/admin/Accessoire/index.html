@@ -31,7 +31,7 @@
                 <td th:text="${unAccessoire.description}"></td>
                 <td th:text="${unAccessoire.cheminImage}"></td>
                 <td th:text="${unAccessoire.qualite.nom}"></td>
-                <td th:text="${unAccessoire.typeAccessoire}"></td>
+                <td th:text="${unAccessoire.typeAccessoire.nom}"></td>
                 <td class="d-flex">
                     <a th:href="@{'/admin/Accessoire/'+${unAccessoire.id}+'/edit'}" class="btn btn-warning">
                         Modifier

@@ -92,9 +92,17 @@ class ArmeController (val armeDAO : ArmeDAO, private val qualiteDAO: QualiteDAO,
     fun edit(@PathVariable id: Long, model: Model): String {
         // Récupère l'arme avec l'ID spécifié depuis la base de données
         val uneArme = this.armeDAO.findById(id).orElseThrow()
+        // Récupère les valeurs de Qualité depuis la base de données
+        val lesQualites = qualiteDAO.findAll()
+        // Récupère les valeurs de TypeArme depuis la base de données
+        val lesTypeArme = typeArmeDAO.findAll()
 
         // Ajoute l'arme au modèle pour affichage dans la vue
         model.addAttribute("arme", uneArme)
+        // Ajoute les valeurs de Qualite au modèle pour affichage dans la vue
+        model.addAttribute("qualites",lesQualites)
+        // Ajoute les valeurs de TypeArme au modèle pour affichage dans la vue
+        model.addAttribute("typeArme",lesTypeArme)
 
         // Retourne le nom de la vue à afficher
         return "admin/Arme/update"

@@ -11,11 +11,10 @@
         <h1 th:text="'Armure '+${armure.nom}"></h1>
         <ul>
             <li th:text="'Nom : '+ ${armure.nom}"></li>
-            <li th:text="'Bonus : '+${armure.bonusType}"></li>
-            <li th:text="'Type : '+${armure.description}"></li>
-            <li th:text="'Type : '+${armure.cheminImage}"></li>
-            <li th:text="'Type : '+${armure.qualite}"></li>
-            <li th:text="'Type : '+${armure.typeArmure}"></li>
+            <li th:text="'Description : '+${armure.description}"></li>
+            <li th:text="'Chemin Image : '+${armure.cheminImage}"></li>
+            <li th:text="'Qualite : '+${armure.qualite.nom}"></li>
+            <li th:text="'Type Armure : '+${armure.typeArmure.nom}"></li>
         </ul>
     </main>
 </div>

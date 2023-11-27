@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head th:replace="mesFragments :: fragHead">
+    <meta charset="UTF-8">
+    <title>Les types d'armes</title>
+</head>
+<body>
+<div class="vh-100">
+    <nav th:replace="mesFragments :: fragNav"></nav>
 <main class="container">
     <div class="row col-10 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
 
@@ -15,18 +24,34 @@
 
             <!-- Input pour la description de l'armure -->
             <div class="mb-3">
-                <label for="description" class="form-label">Bonus de l'armure</label>
-                <input required min="0" max="99" type="number" class="form-control" id="description" name="bonusType" th:field="${armure.description}">
+                <label for="description" class="form-label">Description</label>
+                <input required minlength="3" maxlength="255" type="text" class="form-control" id="description" name="cheminImage" th:field="${armure.description}">
             </div>
 
             <!-- Input pour le cheminImage de l'armure -->
             <div class="mb-3">
-                <label for="cheminImage" class="form-label">Bonus de l'armure</label>
-                <input required min="0" max="99" type="number" class="form-control" id="cheminImage" name="bonusType" th:field="${armure.cheminImage}">
+                <label for="cheminImage" class="form-label">chemin Image</label>
+                <input required minlength="3" maxlength="255" type="text" class="form-control" id="cheminImage" name="cheminImage" th:field="${armure.cheminImage}">
             </div>
+
+            <!-- Input pour la qualité de l'armure  -->
+            <label for="qualite" class="form-label">Qualité de l'armure</label>
+            <select class="form-select" id="qualite" th:field="${armure.qualite.id}">
+                <option th:each="uneQualite : ${qualites}" th:value="${uneQualite.id}" th:text="${uneQualite.nom}"></option>
+            </select>
+
+            <!-- Input pour le type armure-->
+            <label for="typeArme" class="form-label">Type de l'arme</label>
+            <select class="form-select" id="typeArme" th:field="${armure.typeArmure.id}">
+                <option th:each="unTypeArmure : ${typeArmures}" th:value="${unTypeArmure.id}" th:text="${unTypeArmure.nom}"></option>
+            </select>
 
             <!-- Bouton de soumission -->
             <button type="submit" class="btn btn-primary">Modifier</button>
         </form>
     </div>
 </main>
+</div>
+    <footer th:replace="mesFragments :: fragFooter"></footer>
+</body>
+</html>

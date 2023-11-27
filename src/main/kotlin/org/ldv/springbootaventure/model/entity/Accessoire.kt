@@ -1,9 +1,6 @@
 package org.ldv.springbootaventure.model.entity
 
-import jakarta.persistence.DiscriminatorValue
-import jakarta.persistence.Entity
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
+import jakarta.persistence.*
 import org.ldv.springbootaventure.model.entity.Item
 import org.ldv.springbootaventure.model.entity.Qualite
 import org.ldv.springbootaventure.model.entity.TypeAccessoire
@@ -14,7 +11,7 @@ class Accessoire constructor(
     nom: String,
     description: String,
     cheminImage: String?,
-//TODO Attributs spécifiques aux accessoires
+    //TODO Attributs spécifiques aux accessoires
     //Association entre Accessoire et Qualite
     //Plusieurs accessoires peuvent être rataché a une qualite
     @ManyToOne
@@ -26,7 +23,20 @@ class Accessoire constructor(
     @ManyToOne
     @JoinColumn(name = "typeArme_id")
     var typeAccessoire: TypeAccessoire?= null,
+    //Association entre Accessoire et Personnage
+    //Un accessoire peut être rattaché à plusieurs personnages
+    @OneToMany
+    @JoinColumn(name = "personnage_id")
+    open var personnage: MutableList<Personnage>? = null,
 ) : Item(id, nom, description, cheminImage) {
 
+    /**
+     * Équipe l'arme sur un personnage, permettant au personnage de l'utiliser pour attaquer.
+     *
+     * @param cible Le personnage sur lequel l'arme est équipée.
+     */
+    override fun utiliser(cible: Personnage):String {
+        return cible.equipe(this)
+    }
 
 }

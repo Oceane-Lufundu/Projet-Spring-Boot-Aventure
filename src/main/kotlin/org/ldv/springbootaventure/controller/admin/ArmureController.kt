@@ -61,15 +61,13 @@ class ArmureController (val armureDAO: ArmureDAO,  val typeArmureDAO: TypeArmure
     @GetMapping("/admin/Armure/create")
     fun create(model: Model): String {
         // Crée une nouvelle instance d'armure avec des valeurs par défaut
-        val nouvelleArmure = Armure(0, null,null,null,0)
+        val nouvelleArmure = Armure(0, "","","",null,null)
 
         // Récupère les valeurs de Qualite
         val lesQualites = qualiteDAO.findAll()
 
         // Récupère les valeurs de TypeArmure
         val lesTypeArmures = typeArmureDAO.findAll()
-
-
 
         // Ajoute les valeurs de Qualite à la nouvelle armure
         model.addAttribute("qualites",lesQualites)
@@ -106,11 +104,24 @@ class ArmureController (val armureDAO: ArmureDAO,  val typeArmureDAO: TypeArmure
         // Récupère l'armure avec l'ID spécifié depuis la base de données
         val uneArmure = this.armureDAO.findById(id).orElseThrow()
 
+        // Récupère les valeurs de Qualite
+        val lesQualites = qualiteDAO.findAll()
+
+        // Récupère les valeurs de TypeArmure
+        val lesTypeArmures = typeArmureDAO.findAll()
+
+        // Ajoute les valeurs de Qualite à la nouvelle armure
+        model.addAttribute("qualites",lesQualites)
+
+        // Ajoute les valeurs de TypeArmure à la nouvelle armure
+        model.addAttribute("typeArmures",lesTypeArmures)
+
+
         // Ajoute l'armure au modèle pour affichage dans la vue
         model.addAttribute("armure", uneArmure)
 
         // Retourne le nom de la vue à afficher
-        return "admin/TypeArmure/update"
+        return "admin/Armure/update"
     }
 
     /**
@@ -134,13 +145,13 @@ class ArmureController (val armureDAO: ArmureDAO,  val typeArmureDAO: TypeArmure
         armureModifier.typeArmure = armure.typeArmure
 
         // Sauvegarde l'armure modifiée dans la base de données
-        //val savedArmure = this.armureDAO.save(armureModifier)
+        val savedArmure = this.armureDAO.save(armureModifier)
 
         // Ajoute un message de succès pour être affiché à la vue suivante
-        //redirectAttributes.addFlashAttribute("msgSuccess", "Modification de ${savedArmure.nom} réussie")
+        redirectAttributes.addFlashAttribute("msgSuccess", "Modification de ${savedArmure.nom} réussie")
 
         // Redirige vers la page d'administration des armures
-        return "redirect:/admin/TypeArmure"
+        return "redirect:/admin/Armure"
     }
 
     /**

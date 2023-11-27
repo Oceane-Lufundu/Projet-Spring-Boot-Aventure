@@ -1,5 +1,7 @@
 package org.ldv.springbootaventure.model.entity
 
+
+
 class TirageDeDes(
     val nbDe:Int, val maxDe:Int) {
 

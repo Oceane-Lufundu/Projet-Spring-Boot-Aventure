@@ -58,7 +58,7 @@ class AccessoireController (val accessoireDAO : AccessoireDAO, val qualiteDAO: Q
      */
     @GetMapping("/admin/Accessoire/create")
     fun create(model: Model): String {
-        // Crée une nouvelle instance de Accessoire avec des valeurs par défaut
+        // Crée une nouvelle instance de l'accessoire avec des valeurs par défaut
         val nouvelAccessoire = Accessoire(0,"","","",null,null)
         // Récupère les valeurs de Qualite
         val lesQualites = qualiteDAO.findAll()
@@ -96,10 +96,14 @@ class AccessoireController (val accessoireDAO : AccessoireDAO, val qualiteDAO: Q
     fun edit(@PathVariable id: Long, model: Model): String {
         // Récupère l'accessoire avec l'ID spécifié depuis la base de données
         val unAccessoire = this.accessoireDAO.findById(id).orElseThrow()
-
+        val desQualites= this.qualiteDAO.findAll()
+        val desTypeAccessoires = this.typeAccessoireDAO.findAll()
         // Ajoute l'accessoire au modèle pour affichage dans la vue
         model.addAttribute("accessoires", unAccessoire)
-
+        // Ajoute les qualités au modèle pour affichage dans la vue
+        model.addAttribute("qualites",desQualites)
+        // Ajoute les types d'accessoires au modèle pour affichage dans la vue
+        model.addAttribute("typeAccessoires",desTypeAccessoires)
         // Retourne le nom de la vue à afficher
         return "admin/Accessoire/update"
     }

@@ -2,7 +2,7 @@
 <html lang="fr">
 <head th:replace="mesFragments :: fragHead">
     <meta charset="UTF-8">
-    <title>ajout d'un type d'arme</title>
+    <title>ajout d'une arme</title>
 </head>
 <body>
 <div class="vh-100">
@@ -35,7 +35,7 @@
                     <option th:each="uneQualite : ${qualites}" th:value="${uneQualite.id}" th:text="${uneQualite.nom}"></option>
                 </select>
 
-                <!-- Liste déroulante des qualités -->
+                <!-- Liste déroulante des types d'arme -->
                 <label for="typeArme" class="form-label">Type de l'arme</label>
                 <select class="form-select" id="typeArme" th:field="${arme.typeArme.id}">
                     <option th:each="unTypeArme : ${typeArme}" th:value="${unTypeArme.id}" th:text="${unTypeArme .nom}"></option>
