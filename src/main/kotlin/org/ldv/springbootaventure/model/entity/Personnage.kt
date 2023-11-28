@@ -161,35 +161,31 @@ class Personnage constructor(
 
     // Methode pour équiper le personnage d'une arme
     open fun equipe(arme: Arme) { //prend en paramètre une arme.
-        val premierArme = ligneInventaire?.find {}
-        if (premierArme) { //vérifie si l’arme (paramètre) est dans l’inventaire du personnage
+        //parcourt la liste et vérifie si le premier élément trouvé correspond à la condition donné
+        val premierArme = ligneInventaire?.find {ligneInventaire -> ligneInventaire.item==arme  }
+        if (premierArme!= null) { //vérifie si la condition est remplie 
             this.arme = arme //alors elle devient l’arme principale
 
         }
-        return("${this.nom} equipe ${this.arme}")
+        return("${this.nom} équipe ${this.arme}")
 
     }
     // Methode pour équiper le personnage d'une armure
     fun equipe(armure: Armure) {
-        if(armure in ligneInventaire?.find {}){
+        val Armure= ligneInventaire?.find { ligneInventaire -> ligneInventaire.item==armure }
+        if (Armure != null) {
             this.armure = armure
         }
-//        for (item in ligneInventaire) {
-//            if (item is Armure) {
-//                if (armure == item) {
-//                    this.armure = armure
-//                }
-//
-//            }
-//        }
-        println("${this.nom} equipe ${this.armure}")
+        println("${this.nom} équipe ${this.armure}")
+
     }
     // Methode pour équiper le personnage d'un accessoire
-    open fun equipe(accessoire: Accessoire) { //prend en paramètre une arme.
-        if (accessoire in ligneInventaire!!.any {Accessoire}) { //vérifie si l’arme (paramètre) est dans l’inventaire du personnage
-            armePrincipal == arme //alors elle devient l’arme principale
+    open fun equipe(accessoire: Accessoire) { //prend en paramètre un accessoire.
+        val accessoireTrouve = ligneInventaire?.find {it == accessoire}
+        if (accessoireTrouve != null) {//vérifie si l’accessoire (paramètre) est dans l’inventaire du personnage
+            accessoirePrincipal = accessoireTrouve //alors elle devient l’accessoire principale
         }
-        println("${this.nom} equipe ${this.armePrincipal}")
+        println("${this.nom} équipe ${this.accessoirePincipal}")
 
     }
 }

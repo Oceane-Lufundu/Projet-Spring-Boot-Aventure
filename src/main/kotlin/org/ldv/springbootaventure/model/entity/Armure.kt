@@ -3,7 +3,6 @@ package org.ldv.springbootaventure.model.entity
 import jakarta.persistence.*
 
 @Entity
-
 @DiscriminatorValue("armure")
 class Armure constructor(
     id:Long?,

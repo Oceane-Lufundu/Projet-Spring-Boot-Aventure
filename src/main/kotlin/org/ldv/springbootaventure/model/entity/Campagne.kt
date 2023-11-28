@@ -7,6 +7,7 @@ class Campagne constructor(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "id", nullable = false)
     var id: Long,
+    var nom: String,
     var score: Int,
     var etat: String,
     var dernierScore: Int,
