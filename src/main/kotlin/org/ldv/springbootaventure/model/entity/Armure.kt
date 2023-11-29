@@ -17,6 +17,11 @@ class Armure constructor(
     @JoinColumn(name = "qualite_id")
     open var qualite: Qualite? = null,
         //TODO Faire l'association avec TypeArmure
+//Association entre Armure et TypeArmure
+    //Plusieurs armures peuvent être rataché à un type d'armure
+    @ManyToOne
+    @JoinColumn(name = "typeArmure_id")
+    var typeArmure: TypeArmure?= null,
 
     //Association entre Personnage et Armure
     //plusieurs utilisateurs peuvent être rattaché à une armure
@@ -24,11 +29,7 @@ class Armure constructor(
     @JoinColumn(name = "personnage_id")
     var personnage: MutableList<Personnage> = mutableListOf(),
 
-    //Association entre Armure et TypeArmure
-    //Plusieurs armures peuvent être rataché à un type d'armure
-    @ManyToOne
-    @JoinColumn(name = "typeArmure_id")
-    var typeArmure: TypeArmure?= null,
+
 
 ) : Item(id, nom, description, cheminImage) {
 

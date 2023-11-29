@@ -1,5 +1,6 @@
 package org.ldv.springbootaventure.model.entity
 import jakarta.persistence.*
+
 @Entity
 //implémentation de la classe "personnage"
 class Personnage constructor(
@@ -54,8 +55,11 @@ class Personnage constructor(
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
     var utilisateur: Utilisateur? = null,
-
     ) {
+
+
+
+
     //attribut point de vie Max
     val pointDeVieMax: Int
         //getter pour cet attribut
@@ -160,33 +164,74 @@ class Personnage constructor(
 
 
     // Methode pour équiper le personnage d'une arme
-    open fun equipe(arme: Arme) { //prend en paramètre une arme.
-        //parcourt la liste et vérifie si le premier élément trouvé correspond à la condition donné
+    open fun equipe(arme: Arme): String { //Prend en paramètre une arme.
+        //On parcourt la liste et vérifie si le premier élément trouvé correspond à la condition donnée
         val premierArme = ligneInventaire?.find {ligneInventaire -> ligneInventaire.item==arme  }
-        if (premierArme!= null) { //vérifie si la condition est remplie 
-            this.arme = arme //alors elle devient l’arme principale
-
+        // Variable pour stocker les messages générés
+        var message : String = ""
+        if (premierArme!= null) { //vérifie si la condition est remplie
+            this.arme = arme //alors, elle devient l’arme principale
+            // Construit un message décrivant l'action
+            message+="${this.nom} équipe ${this.arme}"
         }
-        return("${this.nom} équipe ${this.arme}")
+        // Retourne le message global décrivant l'action
+        return message
 
     }
     // Methode pour équiper le personnage d'une armure
-    fun equipe(armure: Armure) {
-        val Armure= ligneInventaire?.find { ligneInventaire -> ligneInventaire.item==armure }
+    fun equipe(armure: Armure):String {
+        // Variable pour stocker les messages générés
+        var msg:String = ""
+        val Armure = ligneInventaire?.find { ligneInventaire -> ligneInventaire.item == armure }
+        //Vérifier si la condition est remplie
         if (Armure != null) {
+            //Elle devient l'armure principale
             this.armure = armure
         }
-        println("${this.nom} équipe ${this.armure}")
+        // Construit un message décrivant l'action
+             msg += "${this.nom} équipe ${this.armure}"
+        //Retourne le message global décrivant l'action
+            return msg
+    }
+
+    // Methode pour équiper le personnage d'un accessoire
+     fun equipe(accessoire: Accessoire):String { //prend en paramètre un accessoire.
+        val accessoireTrouve = ligneInventaire?.find { ligneInventaire -> ligneInventaire.item == accessoire}
+        if (accessoireTrouve != null) {//vérifie si l’accessoire (paramètre) est dans l’inventaire du personnage
+            this.accessoire = accessoire //alors elle devient l’accessoire principale
+        }
+        var msg = "${this.nom} équipe ${this.accessoire}"
+        return msg
 
     }
-    // Methode pour équiper le personnage d'un accessoire
-    open fun equipe(accessoire: Accessoire) { //prend en paramètre un accessoire.
-        val accessoireTrouve = ligneInventaire?.find {it == accessoire}
-        if (accessoireTrouve != null) {//vérifie si l’accessoire (paramètre) est dans l’inventaire du personnage
-            accessoirePrincipal = accessoireTrouve //alors elle devient l’accessoire principale
-        }
-        println("${this.nom} équipe ${this.accessoirePincipal}")
+    /**
+     * Méthode pour boire une potion de l'inventaire du personnage.
+     *
+     * @param consommer Spécifie si la potion doit être consommée (décrémentant la quantité) ou non.
+     *                 Par défaut, la potion est consommée.
+     * @return Un message décrivant l'action effectuée, tel que boire la potion ou l'absence de potion.
+     */
+    fun boirePotion(consommer: Boolean = true): String {
+        // Message par défaut si le personnage n'a pas de potion dans son inventaire
+        var msg = "$nom n'a pas de potion dans son inventaire."
 
+        // Vérifier si le personnage a une potion dans son inventaire
+        if (this.aUnePotion()) {
+            // Filtrer les lignes d'inventaire pour obtenir celles qui contiennent des potions
+            val lignePotions: List<LigneInventaire> =
+                this.ligneInventaire!!.filter { ligneInventaire -> ligneInventaire.item is Potion }
+
+            // Utiliser la première potion dans la liste et obtenir le message résultant de l'utilisation
+            msg = lignePotions[0].item!!.utiliser(this)
+
+            // Si consommer est false, augmenter la quantité de potions dans l'inventaire
+            if (!consommer) {
+                lignePotions[0].quantite += 1
+            }
+        }
+
+        // Retourner le message décrivant l'action effectuée
+        return msg
     }
 }
 

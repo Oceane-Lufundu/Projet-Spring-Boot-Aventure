@@ -15,8 +15,9 @@ class Campagne constructor(
 
     //Association entre Campagne et Personnage
     //Un utilisateur peut être rataché à plusieurs campagnes
-        @OneToMany(mappedBy = "campagne")
-        open var personnages: MutableList<Personnage> = mutableListOf(),
+        @ManyToOne
+        @JoinColumn
+        open var hero: Personnage? = null,
 
     //Association entre Campagne et Combat
     //Plusieurs campagnes peuvent être rataché à plusieurs combats
@@ -29,6 +30,7 @@ class Campagne constructor(
         @ManyToOne(cascade = [CascadeType.REMOVE])
         @JoinColumn(name = "utilisateur_id")
         open var utilisateur: Utilisateur? = null,
+
 
 ){
 }
