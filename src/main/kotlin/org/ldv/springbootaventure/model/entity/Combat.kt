@@ -13,14 +13,18 @@ class Combat constructor(
 
 
     @ManyToOne
-  @JoinColumn(name = "monstre_id")
+    @JoinColumn(name = "monstre_id")
     var monstre:Personnage,
 
     //Association entre Combat et Campagne
-    //Plusieurs Combats peuvent être rataché à plusieurs Campagnes
-    @ManyToMany
+    //Plusieurs Combats peuvent être rattaché à plusieurs Campagnes
+    @ManyToOne
     @JoinColumn(name = "campagne_id")
-    var campagne: MutableList<Campagne>?= null,
+    var campagne: Campagne?= null,
+
+
+
+
 
     // Méthode du tour de combat du monstre
    // fun tourMonstre()
@@ -45,7 +49,7 @@ class Combat constructor(
             // Sinon, le monstre prend une décision en fonction du nombre aléatoire
             if (nbAlea < 60) {
                 // Le monstre attaque le héros avec une probabilité de 60%
-                msg += monstre.attaquer(this.campagne.hero!!)
+                msg += monstre.attaque(this.campagne!!.hero!!)
             } else {
                 // Le monstre choisit de passer son tour avec une probabilité de 40%
                 msg += "${monstre.nom} choisit de passer."

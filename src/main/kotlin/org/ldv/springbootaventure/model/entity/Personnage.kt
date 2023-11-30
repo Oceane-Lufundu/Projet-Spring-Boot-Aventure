@@ -15,13 +15,6 @@ class Personnage constructor(
     var vitesse: Int,
     var cheminImage: String,
 
-
-    //Association entre Combat et Personnage
-    //plusieurs utilisateurs peuvent être rattaché à un combat
-    @ManyToOne(cascade = [CascadeType.REMOVE])
-    @JoinColumn(name = "combat_id")
-    open var combat: Combat? = null,
-
     //Association entre Campagne et Personnage
     //plusieurs utilisateurs peuvent être rattaché à une campagne
     @ManyToOne(cascade = [CascadeType.REMOVE])
@@ -31,6 +24,10 @@ class Personnage constructor(
     //association entre classe "Personnage" et "LigneInventaire"
     @OneToMany(mappedBy = "personnage")
     var ligneInventaire: MutableList<LigneInventaire>? = mutableListOf(),
+
+    //association entre classe "Monstre" et "Combat"
+    @OneToMany(mappedBy = "monstre")
+    var combats: MutableList<Combat>? = mutableListOf(),
 
     //Association entre Personnage et Arme
     //Une arme peut être rattaché à plusieurs utilisateurs
@@ -51,7 +48,7 @@ class Personnage constructor(
     open var accessoire: Accessoire? = null,
 
     //Association entre Personnage et Utilisateur
-    //Plusieurs personnages peuvent être rataché à un utilisateur
+    //Plusieurs personnages peuvent être rattaché à un utilisateur
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
     var utilisateur: Utilisateur? = null,

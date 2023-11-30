@@ -16,7 +16,7 @@ class Campagne constructor(
     //Association entre Campagne et Personnage
     //Un utilisateur peut être rataché à plusieurs campagnes
         @ManyToOne
-        @JoinColumn
+        @JoinColumn(name ="hero")
         open var hero: Personnage? = null,
 
     //Association entre Campagne et Combat
